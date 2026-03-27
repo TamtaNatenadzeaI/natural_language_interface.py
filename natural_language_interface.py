@@ -7,7 +7,7 @@ from streamlit_folium import st_folium
 
 # 1. მონაცემების ჩატვირთვა
 def load_data():
-    conn = sqlite3.connect(r"D:\E\E&FF\0. CODES\1. DB\data.db")
+    conn = sqlite3.connect("data.db")
     df = pd.read_sql_query("SELECT * FROM Users", conn)
     conn.close()
     return df
