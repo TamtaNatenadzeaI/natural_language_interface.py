@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="timeline.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 class="title1">RNDP</h1>
+    <h3 class="title2">Russian Nuclear Threat Data Program</h3>
+    <nav class="text1">
+        <a href="#">About</a>
+        <a href="#">Charts</a>
+        <a href="#">Database</a>
+        <a href="#">Research/Publications</a>
+        <a href="#">Download</a>
+        <a href="#">GitHub</a>
+    </nav>
+
+    <iframe 
+    src="https://naturallanguageinterfacepy-kbvrndw2l46h7kddt9qv8f.streamlit.app/?embed=true" 
+    width="100%" 
+    height="800px"
+    frameborder="0">
+</iframe>
+
+    <div class="filters">
+        <h4>FILTERS</h4>
+        <div class="type">
+            <label>Facility types</label>
+            <select id="alltypes" name="typelist">
+                <option value="">All types</option>
+                <option value="Nuclear Bases">Nuclear Bases</option>
+                <option value="Military Bases">Military Bases</option>
+            </select>
+        </div>
+        <div class="level">
+            <label>Risk level</label>
+            <select id="alllevels" name="levellist">
+                <option value="">All levels</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+            </select>
+        </div>
+        <div class="region">
+            <label>Region</label>
+            <select id="allregions" name="regionlist">
+                <option value="">All regions</option>
+                <option value="Siberia">Siberia</option>
+                <option value="Urals">Urals</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <!-- რუკა შუაში -->
+        <div class="center">
+            <div class="map">
+                <img src="map.webp" alt="sample">
+            </div>
+            <div class="timeline-bar">
+                <div class="tl-header">
+                    <span class="tl-title">TIMELINE</span>
+                    <span class="tl-range" id="tl-range">1945 – 2024</span>
+                </div>
+                <input type="range" id="timeline" min="1945" max="2024" value="2024" step="1" oninput="updateTimeline(this.value)">
+                <div class="year-marks">
+                    <span>1945</span>
+                    <span>1960</span>
+                    <span>1980</span>
+                    <span>2000</span>
+                    <span>2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- მარჯვენა პანელი -->
+    <div class="right-panel">
+    <div class="tab-bar">
+        <div class="tab active" id="tab-events" onclick="switchTab('events')">Events</div>
+        <div class="tab" id="tab-ai" onclick="switchTab('ai')">AI Analyst</div>
+    </div>
+    
+    <!-- Events პანელი -->
+    <div id="event-list"></div>
+    
+    <!-- AI Analyst პანელი -->
+    <div id="ai-panel" style="display:none;">
+        <div class="ai-intro">
+            <div class="ai-avatar">AI</div>
+            <p>RNDP system online. I have access to 18 nuclear facilities and 21 historical events. Ask me about geographic distribution, threat trends, or Cold War history.</p>
+        </div>
+        <div id="ai-messages"></div>
+        <div class="quick-queries">
+            <p class="qq-label">Quick queries</p>
+            <button class="qq-btn" onclick="askAI('Highest nuclear concentration?')">Highest nuclear concentration?</button>
+            <button class="qq-btn" onclick="askAI('ICBM threat since 2000')">ICBM threat since 2000</button>
+            <button class="qq-btn" onclick="askAI('Cold War key events')">Cold War key events</button>
+        </div>
+        <div class="ai-input-bar">
+            <input type="text" id="ai-input" placeholder="Ask about nuclear data..." onkeydown="if(event.key==='Enter') askAI()"/>
+            <button onclick="askAI()">→</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
